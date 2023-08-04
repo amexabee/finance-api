@@ -31,4 +31,13 @@ const createBusiness = asyncHandler(async (req, res) => {
   else res.status(400).json({ message: 'Invalid data received' });
 });
 
-module.exports = { getBusiness, createBusiness };
+const deleteBusiness = asyncHandler(async (req, res) => {
+  const { _id } = req.body;
+  const business = await Business.findByIdAndDelete(_id).lean().exec();
+  if (!business) {
+    return res.status(400).json({ message: 'No business found.' });
+  }
+  return res.status(200);
+});
+
+module.exports = { getBusiness, createBusiness, deleteBusiness };

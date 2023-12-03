@@ -7,6 +7,6 @@ const {
 } = require('../controllers/usersController');
 
 router.route('/').get(getAllUsers).post(createNewUser);
-router.route('/login').post(getUser);
+router.route('/login').get(getUser);
 
 module.exports = router;
